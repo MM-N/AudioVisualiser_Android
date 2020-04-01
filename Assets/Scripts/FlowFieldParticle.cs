@@ -12,6 +12,14 @@ public class FlowFieldParticle : MonoBehaviour
         set { _moveSpeed = value; }
     }
 
+    [SerializeField, GetSet("AudioBand")]
+    private int _audioBand;
+    public int AudioBand
+    {
+        get { return _audioBand; }
+        set { _audioBand = value; }
+    }
+
     void Update()
     {
         this.transform.position += transform.forward * MoveSpeed * Time.deltaTime;
