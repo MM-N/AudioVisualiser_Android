@@ -70,6 +70,22 @@ public class FlowField : MonoBehaviour
         set { _particleSize = value; }
     }
 
+    [SerializeField, GetSet("ParticleSpeed")]
+    private float _particleSpeed;
+    public float ParticleSpeed
+    {
+        get { return _particleSpeed; }
+        set { _particleSpeed = value; }
+    }
+
+    [SerializeField, GetSet("ParticleRotSpeed")]
+    private float _particleRotSpeed;
+    public float ParticleRotSpeed
+    {
+        get { return _particleRotSpeed; }
+        set { _particleRotSpeed = value; }
+    }
+
     public float SpawnRadius;
 
     // Check if position of particle is inside radius of spawned particle, false if so
@@ -140,6 +156,7 @@ public class FlowField : MonoBehaviour
     void Update()
     {
         CalculateFlowFieldDirections();
+        ControlParticleMovement();
     }
 
     void CalculateFlowFieldDirections()
@@ -172,9 +189,25 @@ public class FlowField : MonoBehaviour
         }
     }
 
+    void ControlParticleMovement()
+    {
+        foreach (FlowFieldParticle p in particles)
+        {
+            //Find cell is particle in
+            Vector3Int particlePos = new Vector3Int(
+                Mathf.FloorToInt(Mathf.Clamp((p.transform.position.x - this.transform.position.x) / CellSize, 0.0f, GridSize.x - 1.0f)),
+                Mathf.FloorToInt(Mathf.Clamp((p.transform.position.y - this.transform.position.y) / CellSize, 0.0f, GridSize.y - 1.0f)),
+                Mathf.FloorToInt(Mathf.Clamp((p.transform.position.z - this.transform.position.z) / CellSize, 0.0f, GridSize.z - 1.0f))
+            );
+            p.ApplyRotation(_flowFieldDirection[particlePos.x, particlePos.y, particlePos.z], ParticleRotSpeed);
+            p.MoveSpeed = ParticleSpeed;
+            p.transform.localScale = new Vector3(ParticleSize, ParticleSize, ParticleSize);
+        }
+    }
+
     private void OnDrawGizmos()
     {
-        //See outside area of our vector flow field
+        //Display area of our vector flow field
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(this.transform.position + new Vector3
             ((GridSize.x * CellSize) * 0.5f, (GridSize.y * CellSize) * 0.5f, (GridSize.z * CellSize * 0.5f)),

@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class FlowFieldParticle : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField, GetSet("MoveSpeed")]
+    private float _moveSpeed;
+    public float MoveSpeed
     {
-        
+        get { return _moveSpeed; }
+        set { _moveSpeed = value; }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        this.transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+    }
+
+    // Called when particles instantiated from FlowField
+    public void ApplyRotation(Vector3 rotation, float rotateSpeed)
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(rotation.normalized);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
     }
 }

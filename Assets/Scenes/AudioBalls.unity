@@ -251,6 +251,8 @@ MonoBehaviour:
     type: 3}
   _numberOfParticles: 100
   _particleSize: 1
+  _particleSpeed: 10
+  _particleRotSpeed: 100
   SpawnRadius: 1
 --- !u!4 &1361237737
 Transform:
