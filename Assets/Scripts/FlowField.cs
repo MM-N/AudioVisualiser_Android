@@ -70,6 +70,22 @@ public class FlowField : MonoBehaviour
         set { _particleSize = value; }
     }
 
+    public float SpawnRadius;
+
+    // Check if position of particle is inside radius of spawned particle, false if so
+    bool ParticleSpawnValid(Vector3 position)
+    {
+        foreach (FlowFieldParticle particle in particles)
+        {
+            if ((Vector3.Distance(position, particle.transform.position) < SpawnRadius))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -87,17 +103,36 @@ public class FlowField : MonoBehaviour
     {
         for (int i = 0; i < NumberOfParticles; i++)
         {
-            Vector3 randomPos = new Vector3(
+            //Keeping track of spawned particle valid positions
+            int attempt = 0;
+
+            while (attempt < 100)
+            {
+                Vector3 randomPos = new Vector3(
                 Random.Range(this.transform.position.x, this.transform.position.x + GridSize.x * CellSize),
                 Random.Range(this.transform.position.y, this.transform.position.y + GridSize.y * CellSize),
                 Random.Range(this.transform.position.z, this.transform.position.z + GridSize.z * CellSize)
                 );
 
-            GameObject particleInstance = (GameObject)Instantiate(particlePrefab);
-            particleInstance.transform.position = randomPos;
-            particleInstance.transform.parent = this.transform;
-            particleInstance.transform.localScale = new Vector3(ParticleSize, ParticleSize, ParticleSize);
-            particles.Add(particleInstance.GetComponent<FlowFieldParticle>());
+                // May not need, just put directly in if statement
+                bool isValid = ParticleSpawnValid(randomPos);
+
+                if (isValid)
+                {
+                    GameObject particleInstance = (GameObject)Instantiate(particlePrefab);
+                    particleInstance.transform.position = randomPos;
+                    particleInstance.transform.parent = this.transform;
+                    particleInstance.transform.localScale = new Vector3(ParticleSize, ParticleSize, ParticleSize);
+                    particles.Add(particleInstance.GetComponent<FlowFieldParticle>());
+                    break;
+                }
+                else 
+                {
+                    attempt++;
+                }
+            }
+
+            //Debug.Log("Instantiated particles: " + particles.Count);
         }
     }
 
