@@ -58,7 +58,7 @@ public class Instantiator : MonoBehaviour
         {
             if (_spawnedObjectSample != null)
             {
-                _spawnedObjectSample[i].transform.localScale = new Vector3(1, (_audioManager._samples[i] * _maxScale) + 2, 1) ;
+                _spawnedObjectSample[i].transform.localScale = new Vector3(1, (_audioManager.Samples[i] * _maxScale) + 2, 1) ;
             }
         }
     }
