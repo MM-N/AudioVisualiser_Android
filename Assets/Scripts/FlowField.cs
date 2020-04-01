@@ -193,6 +193,47 @@ public class FlowField : MonoBehaviour
     {
         foreach (FlowFieldParticle p in particles)
         {
+
+            //Check if particles have hit edge of the grid, if so move it other side
+            // X EDGES
+            if (p.transform.position.x > this.transform.position.x + (GridSize.x * CellSize))
+            {
+                p.transform.position = new Vector3(this.transform.position.x, p.transform.position.y, p.transform.position.z);
+            }
+            if (p.transform.position.x < this.transform.position.x)
+            {
+                p.transform.position = new Vector3(
+                    this.transform.position.x + (GridSize.x * CellSize),
+                    this.transform.position.y,
+                    this.transform.position.z);
+            }
+
+            // Y EDGES
+            if (p.transform.position.y > this.transform.position.y + (GridSize.y * CellSize))
+            {
+                p.transform.position = new Vector3(this.transform.position.x, p.transform.position.y, p.transform.position.z);
+            }
+            if (p.transform.position.y < this.transform.position.y)
+            {
+                p.transform.position = new Vector3(
+                    this.transform.position.x,
+                    this.transform.position.y + (GridSize.y * CellSize),
+                    this.transform.position.z);
+            }
+
+            //Z EDGES
+            if (p.transform.position.z > this.transform.position.z + (GridSize.z * CellSize))
+            {
+                p.transform.position = new Vector3(this.transform.position.x, p.transform.position.y, p.transform.position.z);
+            }
+            if (p.transform.position.z < this.transform.position.z)
+            {
+                p.transform.position = new Vector3(
+                    this.transform.position.x,
+                    this.transform.position.y,
+                    this.transform.position.z + (GridSize.z * CellSize));
+            }
+
             //Find cell is particle in
             Vector3Int particlePos = new Vector3Int(
                 Mathf.FloorToInt(Mathf.Clamp((p.transform.position.x - this.transform.position.x) / CellSize, 0.0f, GridSize.x - 1.0f)),
