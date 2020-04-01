@@ -152,7 +152,6 @@ public class FlowField : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         CalculateFlowFieldDirections();
@@ -161,6 +160,11 @@ public class FlowField : MonoBehaviour
 
     void CalculateFlowFieldDirections()
     {
+        //** Change directions of particles over time **//
+        Offset = new Vector3(Offset.x + (OffsetSpeed.x * Time.deltaTime), 
+            Offset.y + (OffsetSpeed.y * Time.deltaTime), 
+            Offset.z + (OffsetSpeed.z * Time.deltaTime));
+
         //** Creating the flow grid **//
 
         float xOff = 0.0f;
@@ -193,7 +197,6 @@ public class FlowField : MonoBehaviour
     {
         foreach (FlowFieldParticle p in particles)
         {
-
             ResetParticlePositionOnEdgeTouch(p);
 
             //Find cell is particle in
@@ -208,9 +211,9 @@ public class FlowField : MonoBehaviour
         }
     }
 
+    //** Check if particles have hit edge of the grid, if so move it other side **//
     void ResetParticlePositionOnEdgeTouch(FlowFieldParticle p)
     {
-        //Check if particles have hit edge of the grid, if so move it other side
         // X EDGES
         if (p.transform.position.x > this.transform.position.x + (GridSize.x * CellSize))
         {
