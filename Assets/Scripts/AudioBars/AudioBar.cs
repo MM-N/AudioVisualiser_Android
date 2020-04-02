@@ -44,10 +44,10 @@ public class AudioBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
+        
         transform.localScale = new Vector3(transform.localScale.x, 
             (_audioManager.FreqBand[Band] * ScaleMultiplier) + StartScale, 
             transform.localScale.z);
-            */
+            
     }
 }

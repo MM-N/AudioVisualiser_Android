@@ -188,6 +188,11 @@ PrefabInstance:
       propertyPath: _band
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5942589310097284568, guid: a6c932c79aaadd344b09b1a18764472d,
+        type: 3}
+      propertyPath: _scaleMultiplier
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8527204974094476166, guid: a6c932c79aaadd344b09b1a18764472d,
         type: 3}
       propertyPath: m_Name
@@ -262,6 +267,11 @@ PrefabInstance:
       propertyPath: _band
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5942589310097284568, guid: a6c932c79aaadd344b09b1a18764472d,
+        type: 3}
+      propertyPath: _scaleMultiplier
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8527204974094476166, guid: a6c932c79aaadd344b09b1a18764472d,
         type: 3}
       propertyPath: m_Name
@@ -299,6 +309,528 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43f24d0f356dc84f9642ea3a80a7c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Samples:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  FreqBand:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!82 &184472243
 AudioSource:
   m_ObjectHideFlags: 0
@@ -476,6 +1008,11 @@ PrefabInstance:
       propertyPath: _band
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5942589310097284568, guid: a6c932c79aaadd344b09b1a18764472d,
+        type: 3}
+      propertyPath: _scaleMultiplier
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8527204974094476166, guid: a6c932c79aaadd344b09b1a18764472d,
         type: 3}
       propertyPath: m_Name
@@ -628,6 +1165,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5942589310097284568, guid: a6c932c79aaadd344b09b1a18764472d,
+        type: 3}
+      propertyPath: _scaleMultiplier
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8527204974094476166, guid: a6c932c79aaadd344b09b1a18764472d,
         type: 3}
       propertyPath: m_Name
@@ -701,6 +1243,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _band
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5942589310097284568, guid: a6c932c79aaadd344b09b1a18764472d,
+        type: 3}
+      propertyPath: _scaleMultiplier
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8527204974094476166, guid: a6c932c79aaadd344b09b1a18764472d,
         type: 3}
@@ -776,6 +1323,11 @@ PrefabInstance:
       propertyPath: _band
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5942589310097284568, guid: a6c932c79aaadd344b09b1a18764472d,
+        type: 3}
+      propertyPath: _scaleMultiplier
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8527204974094476166, guid: a6c932c79aaadd344b09b1a18764472d,
         type: 3}
       propertyPath: m_Name
@@ -849,6 +1401,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _band
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5942589310097284568, guid: a6c932c79aaadd344b09b1a18764472d,
+        type: 3}
+      propertyPath: _scaleMultiplier
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8527204974094476166, guid: a6c932c79aaadd344b09b1a18764472d,
         type: 3}
@@ -1015,6 +1572,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _band
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5942589310097284568, guid: a6c932c79aaadd344b09b1a18764472d,
+        type: 3}
+      propertyPath: _scaleMultiplier
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8527204974094476166, guid: a6c932c79aaadd344b09b1a18764472d,
         type: 3}

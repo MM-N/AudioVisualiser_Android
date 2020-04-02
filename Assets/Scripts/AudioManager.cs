@@ -10,17 +10,11 @@ public class AudioManager : MonoBehaviour
     public float[] Samples = new float[512];
 
     public float[] FreqBand = new float[8];
-    /*
-    public float[] FreqBand
-    {
-        get { return _freqBand; }
-    }
-    */
 
     // Start is called before the first frame update
     void Start()
     {
-        _audioSource = GetComponent<AudioSource>();    
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -73,7 +67,7 @@ public class AudioManager : MonoBehaviour
 
             //Assing samples to the bands
             //Find average amplitude of all frequencie samples
-            for (int j = 0; i < sampleCount; j++)
+            for (int j = 0; j < sampleCount; j++)
             {
                 average += Samples[currentSample] * (currentSample + 1);
                 currentSample++;
