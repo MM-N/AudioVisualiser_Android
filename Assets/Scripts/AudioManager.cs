@@ -11,6 +11,9 @@ public class AudioManager : MonoBehaviour
 
     public float[] FreqBand = new float[8];
 
+    public float[] _bandBuffer = new float[8];
+    float[] _bufferDecrease = new float[8];
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +25,31 @@ public class AudioManager : MonoBehaviour
     {
         GetSpectrumAudio();
         MakeFrequencyBands();
+        BandBuffer();
     }
 
     void GetSpectrumAudio()
     {
         _audioSource.GetSpectrumData(Samples, 0, FFTWindow.Blackman);
+    }
+
+    void BandBuffer()
+    {
+        for (int g = 0; g < 8; ++g)
+        {
+            if (FreqBand[g] > _bandBuffer[g])
+            {
+                _bandBuffer[g] = FreqBand[g];
+                _bufferDecrease[g] = 0.005f;
+            }
+
+            if (FreqBand[g] < _bandBuffer[g])
+            {
+                _bandBuffer[g] -= _bufferDecrease[g];
+                //the greater the freq band over the buffer, the faster we want to fall
+                _bufferDecrease[g] *= 1.2f;
+            }
+        }
     }
 
     void MakeFrequencyBands()

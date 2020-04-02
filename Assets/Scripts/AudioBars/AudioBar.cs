@@ -5,6 +5,7 @@ using UnityEngine;
 public class AudioBar : MonoBehaviour
 {
     public AudioManager _audioManager;
+    public bool _useBuffer = true;
 
     [SerializeField, GetSet("Band")]
     int _band;
@@ -44,10 +45,20 @@ public class AudioBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        transform.localScale = new Vector3(transform.localScale.x, 
-            (_audioManager.FreqBand[Band] * ScaleMultiplier) + StartScale, 
+        if (_useBuffer)
+        {
+            transform.localScale = new Vector3(transform.localScale.x,
+            (_audioManager._bandBuffer[Band] * ScaleMultiplier) + StartScale,
             transform.localScale.z);
-            
+        }
+
+        if (!_useBuffer)
+        {
+            transform.localScale = new Vector3(transform.localScale.x,
+            (_audioManager.FreqBand[Band] * ScaleMultiplier) + StartScale,
+            transform.localScale.z);
+        }
+         
+        
     }
 }
