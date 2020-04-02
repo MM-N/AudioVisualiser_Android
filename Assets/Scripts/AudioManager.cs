@@ -14,6 +14,11 @@ public class AudioManager : MonoBehaviour
     public float[] _bandBuffer = new float[8];
     float[] _bufferDecrease = new float[8];
 
+    /* For Amplitude */
+    float[] _bandLargestFreq = new float[8];
+    public float[] _audioBand = new float[8];
+    public float[] _audioBandBuffer = new float[8];
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,11 +31,27 @@ public class AudioManager : MonoBehaviour
         GetSpectrumAudio();
         MakeFrequencyBands();
         BandBuffer();
+        CreateAudioBands();
     }
 
     void GetSpectrumAudio()
     {
         _audioSource.GetSpectrumData(Samples, 0, FFTWindow.Blackman);
+    }
+
+    //** For using amplitude values **//
+    void CreateAudioBands()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            if (FreqBand[i] > _bandLargestFreq[i])
+            {
+                _bandLargestFreq[i] = FreqBand[i];
+            }
+
+            _audioBand[i] = (FreqBand[i] / _bandLargestFreq[i]);
+            _audioBandBuffer[i] = (_bandBuffer[i] / _bandLargestFreq[i]);
+        }
     }
 
     void BandBuffer()
