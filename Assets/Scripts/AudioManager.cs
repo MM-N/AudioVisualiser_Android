@@ -14,10 +14,15 @@ public class AudioManager : MonoBehaviour
     public float[] _bandBuffer = new float[8];
     float[] _bufferDecrease = new float[8];
 
-    /* For Amplitude */
+    /* For Normalised Range */
     float[] _bandLargestFreq = new float[8];
     public float[] _audioBand = new float[8];
     public float[] _audioBandBuffer = new float[8];
+
+    /* For amplitude */
+    public float _amplitude = 0.01f;
+    public float _amplitudeBuffer = 0.01f;
+    float _highestAmplitude = 0.01f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +33,15 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetSpectrumAudio();
-        MakeFrequencyBands();
-        BandBuffer();
-        CreateAudioBands();
+        if (_audioSource.isPlaying)
+        {
+            GetSpectrumAudio();
+            MakeFrequencyBands();
+            BandBuffer();
+            CreateAudioBands();
+            GetAmplitude();
+        }
+
     }
 
     void GetSpectrumAudio()
@@ -119,6 +129,29 @@ public class AudioManager : MonoBehaviour
 
             average /= currentSample;
             FreqBand[i] = average * 10; //As average is a little below 0
+
         }
     }
+
+    void GetAmplitude()
+    {
+        float _currentAmplitude = 0.0f;
+        float _currentAmplitudeBuffer = 0.0f;
+
+        for (int i = 0; i < 8; i++)
+        {
+            _currentAmplitude += _audioBand[i];
+            _currentAmplitudeBuffer += _audioBandBuffer[i];
+        }
+
+        if (_currentAmplitude > _highestAmplitude)
+        {
+            _highestAmplitude = _currentAmplitude;
+        }
+
+        _amplitude = _currentAmplitude / _highestAmplitude;
+        _amplitudeBuffer = _currentAmplitudeBuffer / _highestAmplitude;
+
+    }
+
 }
