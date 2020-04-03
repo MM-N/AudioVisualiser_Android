@@ -48,7 +48,7 @@ public class AudioBar : MonoBehaviour
         if (_useBuffer)
         {
             transform.localScale = new Vector3(transform.localScale.x,
-            (_audioManager._bandBuffer[Band] * ScaleMultiplier) + StartScale,
+            (_audioManager.BandBuffer[Band] * ScaleMultiplier) + StartScale,
             transform.localScale.z);
         }
 

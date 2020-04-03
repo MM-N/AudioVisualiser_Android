@@ -7,27 +7,63 @@ public class AudioManager : MonoBehaviour
 {
     AudioSource _audioSource;
 
-    public float[] Samples = new float[512];
+    /** For spectrum data analysis **/
+    float[] _samples = new float[512];
+    public float[] Samples
+    {
+        get { return _samples; }
+    }
 
-    public float[] FreqBand = new float[8];
+    float[] _freqBand = new float[8];
+    public float[] FreqBand
+    {
+        get { return _freqBand; }
+    }
 
-    public float[] _bandBuffer = new float[8];
+    /** For smoother visuals **/
+    float[] _bandBuffer = new float[8];
+    public float[] BandBuffer
+    {
+        get { return _bandBuffer; }
+    }
+
     float[] _bufferDecrease = new float[8];
 
-    /* For Normalised Range */
+    /** For Normalised Range **/
     float[] _bandLargestFreq = new float[8];
-    public float[] _audioBand = new float[8];
-    public float[] _audioBandBuffer = new float[8];
 
-    /* For amplitude */
-    public float _amplitude = 0.01f;
-    public float _amplitudeBuffer = 0.01f;
+    float[] _audioBand = new float[8];
+    public float[] AudioBand
+    {
+        get { return _audioBand; }
+    }
+
+    float[] _audioBandBuffer = new float[8];
+    public float[] AudioBandBuffer
+    {
+        get { return _audioBandBuffer; }
+    }
+
+    /** For amplitude **/
+    float _amplitude = 0.01f;
+    public float Amplitude
+    {
+        get { return _amplitude; }
+    }
+
+    float _amplitudeBuffer = 0.01f;
+    public float AmplitudeBuffer
+    {
+        get { return _amplitudeBuffer; }
+    }
+
     float _highestAmplitude = 0.01f;
+    float _tempHighestFrequency = 5.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        PreloadHighestFrequencies(_tempHighestFrequency);
     }
 
     // Update is called once per frame
@@ -37,7 +73,7 @@ public class AudioManager : MonoBehaviour
         {
             GetSpectrumAudio();
             MakeFrequencyBands();
-            BandBuffer();
+            CreateBandBuffer();
             CreateAudioBands();
             GetAmplitude();
         }
@@ -54,23 +90,33 @@ public class AudioManager : MonoBehaviour
     {
         for (int i = 0; i < 8; i++)
         {
-            if (FreqBand[i] > _bandLargestFreq[i])
+            if (_freqBand[i] > _bandLargestFreq[i])
             {
-                _bandLargestFreq[i] = FreqBand[i];
+                _bandLargestFreq[i] = _freqBand[i];
             }
 
-            _audioBand[i] = (FreqBand[i] / _bandLargestFreq[i]);
+            _audioBand[i] = (_freqBand[i] / _bandLargestFreq[i]);
             _audioBandBuffer[i] = (_bandBuffer[i] / _bandLargestFreq[i]);
         }
     }
 
-    void BandBuffer()
+    //** To avoid jittery movment at the start as highest frequency values are empty,
+    //** pre load values to all bands **//
+    void PreloadHighestFrequencies(float tempHighestFrequency)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            _bandLargestFreq[i] = tempHighestFrequency;
+        }
+    }
+
+    void CreateBandBuffer()
     {
         for (int g = 0; g < 8; ++g)
         {
-            if (FreqBand[g] > _bandBuffer[g])
+            if (_freqBand[g] > _bandBuffer[g])
             {
-                _bandBuffer[g] = FreqBand[g];
+                _bandBuffer[g] = _freqBand[g];
                 _bufferDecrease[g] = 0.005f;
             }
 
@@ -128,7 +174,7 @@ public class AudioManager : MonoBehaviour
             }
 
             average /= currentSample;
-            FreqBand[i] = average * 10; //As average is a little below 0
+            _freqBand[i] = average * 10; //As average is a little below 0
 
         }
     }
