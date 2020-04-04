@@ -34,4 +34,17 @@ public class DebugHelper : MonoBehaviour
         }
     }
 
+    public bool IsValidObject(Object objectIn)
+    {
+        if (objectIn != null)
+        {
+            return true;
+        }
+        else {
+            Debug.Log("Invalid object / object not found. Exiting.");
+            Application.Quit();
+            return false;
+        }
+    }
+
 }

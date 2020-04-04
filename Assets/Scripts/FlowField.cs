@@ -52,7 +52,11 @@ public class FlowField : MonoBehaviour
     //** PARTICLES **//
     public GameObject particlePrefab;
 
-    List<FlowFieldParticle> particles;
+    List<FlowFieldParticle> _particles;
+    public List<FlowFieldParticle> Particles
+    {
+        get { return _particles; }
+    }
 
     [SerializeField, GetSet("NumberOfParticles")]
     private int _numberOfParticles;
@@ -91,7 +95,7 @@ public class FlowField : MonoBehaviour
     // Check if position of particle is inside radius of spawned particle, false if so
     bool ParticleSpawnValid(Vector3 position)
     {
-        foreach (FlowFieldParticle particle in particles)
+        foreach (FlowFieldParticle particle in _particles)
         {
             if ((Vector3.Distance(position, particle.transform.position) < SpawnRadius))
             {
@@ -103,13 +107,14 @@ public class FlowField : MonoBehaviour
     }
 
 
-    // Start is called before the first frame update
-    void Start()
+    //** Need this to happen before the AudioFlowField Start method **//
+    //** Also set script execution order **//
+    void Awake()
     {
         _flowFieldDirection = new Vector3[GridSize.x, GridSize.y, GridSize.z];
         _fastNoise = new FastNoise();
 
-        particles = new List<FlowFieldParticle>();
+        _particles = new List<FlowFieldParticle>();
 
         SpawnParticles();
 
@@ -139,7 +144,7 @@ public class FlowField : MonoBehaviour
                     particleInstance.transform.position = randomPos;
                     particleInstance.transform.parent = this.transform;
                     particleInstance.transform.localScale = new Vector3(ParticleSize, ParticleSize, ParticleSize);
-                    particles.Add(particleInstance.GetComponent<FlowFieldParticle>());
+                    _particles.Add(particleInstance.GetComponent<FlowFieldParticle>());
                     break;
                 }
                 else 
@@ -195,7 +200,7 @@ public class FlowField : MonoBehaviour
 
     void ControlParticleMovement()
     {
-        foreach (FlowFieldParticle p in particles)
+        foreach (FlowFieldParticle p in _particles)
         {
             ResetParticlePositionOnEdgeTouch(p);
 
