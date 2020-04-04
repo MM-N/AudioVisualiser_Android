@@ -58,7 +58,14 @@ public class AudioFlowField : MonoBehaviour
     public string _colourNameTwo;
     Color[] _colourOne;
     Color[] _colourTwo;
-    
+
+    [SerializeField]
+    [Range(0.0f, 1.0f)]
+    float _colourThresholdOne = 0.0f;
+
+    [SerializeField]
+    [Range(0.0f, 1.0f)]
+    float _colourThresholdTwo = 0.0f;
 
     [SerializeField, GetSet("UseColourOne")]
     bool _useColourOne;
@@ -74,22 +81,6 @@ public class AudioFlowField : MonoBehaviour
     {
         get { return _useColourTwo; }
         set { _useColourTwo = value; }
-    }
-
-    [SerializeField, GetSet("ColourThresholdOne")]
-    float _colourThresholdOne;
-    public float ColourThresholdOne
-    {
-        get { return _colourThresholdOne; }
-        set { _colourThresholdOne = value; }
-    }
-
-    [SerializeField, GetSet("ColourThresholdTwo")]
-    float _colourThresholdTwo;
-    public float ColourThresholdTwo
-    {
-        get { return _colourThresholdTwo; }
-        set { _colourThresholdTwo = value; }
     }
 
     [SerializeField, GetSet("ColourMultiplierOne")]
