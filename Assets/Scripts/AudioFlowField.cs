@@ -50,8 +50,85 @@ public class AudioFlowField : MonoBehaviour
         set { _scaleMinMax = value; }
     }
 
+    [Header("Material")]
+    public Material _material;
+    public Gradient _gradientOne;
+    public Gradient _gradientTwo;
+    public string _colourNameOne;
+    public string _colourNameTwo;
+    Color[] _colourOne;
+    Color[] _colourTwo;
+    
+
+    [SerializeField, GetSet("UseColourOne")]
+    bool _useColourOne;
+    public bool UseColourOne
+    {
+        get { return _useColourOne; }
+        set { _useColourOne = value; }
+    }
+
+    [SerializeField, GetSet("UseColourTwo")]
+    bool _useColourTwo;
+    public bool UseColourTwo
+    {
+        get { return _useColourTwo; }
+        set { _useColourTwo = value; }
+    }
+
+    [SerializeField, GetSet("ColourThresholdOne")]
+    float _colourThresholdOne;
+    public float ColourThresholdOne
+    {
+        get { return _colourThresholdOne; }
+        set { _colourThresholdOne = value; }
+    }
+
+    [SerializeField, GetSet("ColourThresholdTwo")]
+    float _colourThresholdTwo;
+    public float ColourThresholdTwo
+    {
+        get { return _colourThresholdTwo; }
+        set { _colourThresholdTwo = value; }
+    }
+
+    [SerializeField, GetSet("ColourMultiplierOne")]
+    float _colourMultiplierOne;
+    public float ColourMultiplierOne
+    {
+        get { return _colourMultiplierOne; }
+        set { _colourMultiplierOne = value; }
+    }
+
+    [SerializeField, GetSet("ColourMultiplierTwo")]
+    float _colourMultiplierTwo;
+    public float ColourMultiplierTwo
+    {
+        get { return _colourMultiplierTwo; }
+        set { _colourMultiplierTwo = value; }
+    }
+
+    Material[] _audioMaterial;
+    public Material[] AudioMaterial
+    {
+        get { return _audioMaterial; }
+        set { _audioMaterial = value; }
+    }
+
+
     void Start()
     {
+        _audioMaterial = new Material[8];
+        _colourOne = new Color[8];
+        _colourTwo = new Color[8];
+
+        for (int i = 0; i < 8; i++)
+        {
+            _colourOne[i] = _gradientOne.Evaluate((1.0f / 8.0f) * i);
+            _colourTwo[i] = _gradientTwo.Evaluate((1.0f / 8.0f) * i);
+            _audioMaterial[i] = new Material(_material);
+        }
+
         _audioManager = FindObjectOfType<AudioManager>();
         DebugHelper.debugHelper.IsValidObject(_audioManager);
 
@@ -62,6 +139,7 @@ public class AudioFlowField : MonoBehaviour
         {
             //Create a more even distribution across the frequency bands
             int band = bandCount % 8;
+            _flowField.ParticleMeshRenderers[i].material = _audioMaterial[band];
             _flowField.Particles[i].AudioBand = band;
             bandCount++;
         }
@@ -82,6 +160,37 @@ public class AudioFlowField : MonoBehaviour
             {
                 float scale = Mathf.Lerp(_scaleMinMax.x, _scaleMinMax.y, _audioManager.AudioBandBuffer[_flowField.Particles[i].AudioBand]);
                 _flowField.Particles[i].transform.localScale = new Vector3(scale, scale, scale);
+            }
+        }
+
+        for (int i = 0; i < 8; i++)
+        {
+            //Using audio band buffer
+            if (_useColourOne)
+            {
+                if (_audioManager.AudioBandBuffer[i] > _colourThresholdOne)
+                {
+                    _audioMaterial[i].SetColor(_colourNameOne, _colourOne[i] * _audioManager.AudioBandBuffer[i] * _colourMultiplierOne);
+                }
+                else 
+                {
+                    //Set to black
+                    _audioMaterial[i].SetColor(_colourNameOne, _colourOne[i] * 0.0f);
+                }
+            }
+
+            //using audio band no buffer
+            if (_useColourTwo)
+            {
+                if (_audioManager.AudioBand[i] > _colourThresholdTwo)
+                {
+                    _audioMaterial[i].SetColor(_colourNameTwo, _colourTwo[i] * _audioManager.AudioBand[i] * _colourMultiplierTwo);
+                }
+                else
+                {
+                    //Set to black
+                    _audioMaterial[i].SetColor(_colourNameTwo, _colourTwo[i] * 0.0f);
+                }
             }
         }
 

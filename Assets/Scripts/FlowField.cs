@@ -58,6 +58,12 @@ public class FlowField : MonoBehaviour
         get { return _particles; }
     }
 
+    List<MeshRenderer> _particleMeshRenderers;
+    public List<MeshRenderer> ParticleMeshRenderers
+    {
+        get { return _particleMeshRenderers; }
+    }
+
     [SerializeField, GetSet("NumberOfParticles")]
     private int _numberOfParticles;
     public int NumberOfParticles
@@ -115,6 +121,7 @@ public class FlowField : MonoBehaviour
         _fastNoise = new FastNoise();
 
         _particles = new List<FlowFieldParticle>();
+        _particleMeshRenderers = new List<MeshRenderer>();
 
         SpawnParticles();
 
@@ -145,6 +152,7 @@ public class FlowField : MonoBehaviour
                     particleInstance.transform.parent = this.transform;
                     particleInstance.transform.localScale = new Vector3(ParticleSize, ParticleSize, ParticleSize);
                     _particles.Add(particleInstance.GetComponent<FlowFieldParticle>());
+                    _particleMeshRenderers.Add(particleInstance.GetComponent<MeshRenderer>());
                     break;
                 }
                 else 

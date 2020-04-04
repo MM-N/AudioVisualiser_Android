@@ -431,7 +431,7 @@ MonoBehaviour:
   _offset: {x: 4.39, y: 6.79, z: 5.36}
   _offsetSpeed: {x: 2.45, y: 0, z: 0}
   _cellSize: 10
-  particlePrefab: {fileID: 7155311061092757314, guid: 21194fdc97bf7874eb95170786d6996a,
+  particlePrefab: {fileID: 8744707082663092039, guid: f17b49e259a6d8b48994f177a7159888,
     type: 3}
   _numberOfParticles: 1000
   _particleSize: 1
@@ -468,7 +468,7 @@ MonoBehaviour:
   _moveSpeedMinMax: {x: 0, y: 10}
   _rotateSpeedMinMax: {x: 50, y: 300}
   _useScale: 1
-  _scaleMinMax: {x: 1, y: 2}
+  _scaleMinMax: {x: 0.1, y: 1}
 --- !u!1 &1393265712
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +546,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393265712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 50, y: 25, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
