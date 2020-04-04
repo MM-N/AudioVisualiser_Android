@@ -212,7 +212,9 @@ public class FlowField : MonoBehaviour
             );
             p.ApplyRotation(_flowFieldDirection[particlePos.x, particlePos.y, particlePos.z], ParticleRotSpeed);
             p.MoveSpeed = ParticleSpeed;
-            p.transform.localScale = new Vector3(ParticleSize, ParticleSize, ParticleSize);
+
+            //Moved to AudioFlowField to control scale based on audio amplitude
+            //p.transform.localScale = new Vector3(ParticleSize, ParticleSize, ParticleSize);
         }
     }
 

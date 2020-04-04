@@ -33,6 +33,23 @@ public class AudioFlowField : MonoBehaviour
         set { _rotateSpeedMinMax = value; }
     }
 
+    [Header("Scale")]
+    [SerializeField, GetSet("UseScale")]
+    bool _useScale;
+    public bool UseScale
+    {
+        get { return _useScale; }
+        set { _useScale = value; }
+    }
+
+    [SerializeField, GetSet("ScaleMinMax")]
+    Vector2 _scaleMinMax;
+    public Vector2 ScaleMinMax
+    {
+        get { return _scaleMinMax; }
+        set { _scaleMinMax = value; }
+    }
+
     void Start()
     {
         _audioManager = FindObjectOfType<AudioManager>();
@@ -58,5 +75,15 @@ public class AudioFlowField : MonoBehaviour
             _flowField.ParticleSpeed = Mathf.Lerp(_moveSpeedMinMax.x, _moveSpeedMinMax.y, _audioManager.AmplitudeBuffer);
             _flowField.ParticleRotSpeed = Mathf.Lerp(_rotateSpeedMinMax.x, _rotateSpeedMinMax.y, _audioManager.AmplitudeBuffer);
         }
+
+        for (int i = 0; i < _flowField.NumberOfParticles; i++)
+        {
+            if (_useScale)
+            {
+                float scale = Mathf.Lerp(_scaleMinMax.x, _scaleMinMax.y, _audioManager.AudioBandBuffer[_flowField.Particles[i].AudioBand]);
+                _flowField.Particles[i].transform.localScale = new Vector3(scale, scale, scale);
+            }
+        }
+
     }
 }
