@@ -228,33 +228,33 @@ public class FlowField : MonoBehaviour
         {
             p.transform.position = new Vector3(
                 this.transform.position.x + (GridSize.x * CellSize),
-                this.transform.position.y,
-                this.transform.position.z);
+                p.transform.position.y,
+                p.transform.position.z);
         }
 
         // Y EDGES
         if (p.transform.position.y > this.transform.position.y + (GridSize.y * CellSize))
         {
-            p.transform.position = new Vector3(this.transform.position.x, p.transform.position.y, p.transform.position.z);
+            p.transform.position = new Vector3(p.transform.position.x, this.transform.position.y, p.transform.position.z);
         }
         if (p.transform.position.y < this.transform.position.y)
         {
             p.transform.position = new Vector3(
-                this.transform.position.x,
+                p.transform.position.x,
                 this.transform.position.y + (GridSize.y * CellSize),
-                this.transform.position.z);
+                p.transform.position.z);
         }
 
         //Z EDGES
         if (p.transform.position.z > this.transform.position.z + (GridSize.z * CellSize))
         {
-            p.transform.position = new Vector3(this.transform.position.x, p.transform.position.y, p.transform.position.z);
+            p.transform.position = new Vector3(p.transform.position.x, p.transform.position.y, this.transform.position.z);
         }
         if (p.transform.position.z < this.transform.position.z)
         {
             p.transform.position = new Vector3(
-                this.transform.position.x,
-                this.transform.position.y,
+                p.transform.position.x,
+                p.transform.position.y,
                 this.transform.position.z + (GridSize.z * CellSize));
         }
     }
